@@ -16,7 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server &&        m
         echo 'root:root' |chpasswd
 
 #Utilities
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ vim less net-tools inetutils-ping curl git telnet nmap socat dnsutils netcat
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ build-essential vim less net-tools inetutils-ping curl git telnet nmap socat dnsutils netcat
 
 RUN cd /tmp && \
     wget http://llvm.org/releases/3.2/llvm-3.2.src.tar.gz && \
