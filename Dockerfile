@@ -9,16 +9,8 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu precise main universe' > /etc/apt
 #Prevent daemon start during install
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -s /bin/true /sbin/initctl
 
-#Supervisord
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor && mkdir -p /var/log/supervisor
-CMD ["/usr/bin/supervisord", "-n"]
-
-#SSHD
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server &&        mkdir /var/run/sshd && \
-        echo 'root:root' |chpasswd
-
 #Utilities
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc g++ build-essential vim less net-tools inetutils-ping curl git telnet nmap socat dnsutils netcat
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential vim less curl git
 
 RUN mkdir -p /usr/local/src
 
@@ -28,6 +20,4 @@ RUN cd /usr/local/src && \
     cd llvm-3.2.src && \
     ./configure --enable-optimized && \
     REQUIRES_RTTI=1 make install
-
-EXPOSE 22
 
