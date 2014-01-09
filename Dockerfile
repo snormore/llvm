@@ -10,7 +10,7 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu precise main universe' > /etc/apt
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -s /bin/true /sbin/initctl
 
 #Utilities
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential vim less curl git
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential vim less curl git wget
 
 RUN mkdir -p /usr/local/src
 
